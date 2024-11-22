@@ -18,6 +18,7 @@ export const ChannelRow = ({ channel, setHoveredEvent }: ChannelRowProps) => {
         height: '80px',
         width: `${150 + timeTitles.length * 150}px`,
       }}
+      data-testid={`channel-row-${channel.id}`}
     >
       <ChannelCard channel={channel} />
 

@@ -13,7 +13,10 @@ const Epg: React.FC = () => {
   return (
     <TimeTitlesProvider>
       <div className="flex flex-col h-full overflow-hidden">
-        <EventHoverDetails hoveredEvent={hoveredEvent} />
+        <EventHoverDetails
+          hoveredEvent={hoveredEvent}
+          data-test-id="event-hover-details"
+        />
         {isLoading || isError ? (
           <div className="flex-1 flex items-center justify-center bg-[#1A1A1A] text-white">
             {isLoading
