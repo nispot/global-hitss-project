@@ -1,8 +1,29 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import type { UserConfigExport as VitestUserConfigExport } from 'vitest/config';
 
-// https://vite.dev/config/
+const vitestConfig: VitestUserConfigExport = {
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
+    css: true,
+    coverage: {
+      exclude: [
+        'dist/**',
+        'eslint.config.js',
+        'vite.config.ts',
+        'postcss.config.js',
+        'tailwind.config.js',
+        'src/main.tsx',
+        'src/types.d.ts',
+        'src/vite-env.d.ts',
+      ],
+    },
+  },
+};
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -15,4 +36,5 @@ export default defineConfig({
       '@context': resolve(__dirname, './src/context'),
     },
   },
+  test: vitestConfig.test,
 });
